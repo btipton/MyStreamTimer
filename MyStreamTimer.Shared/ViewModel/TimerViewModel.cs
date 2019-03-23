@@ -6,6 +6,7 @@ using System;
 using System.IO;
 using System.Timers;
 using System.Windows.Input;
+using Xamarin.Essentials;
 
 // kymphillpotts cheered 150 March 9th 2019
 
@@ -166,6 +167,13 @@ namespace MyStreamTimer.Shared.ViewModel
 
         void WriteTimeToDisk()
         {
+
+            if(DeviceInfo.Platform == DevicePlatform.Android ||
+                DeviceInfo.Platform == DevicePlatform.iOS)
+            {
+                return;
+            }
+
             try
             {
                 File.WriteAllText(currentFileName, CountdownOutput);

@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MyStreamTimer.Mobile"
+             xmlns:viewmodel="clr-namespace:MyStreamTimer.Shared.ViewModel;assembly=MyStreamTimer.Shared"
+             x:Class="MyStreamTimer.Mobile.MainPage">
+    <ContentPage.BindingContext>
+        <viewmodel:TimerViewModel/>
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <Grid Margin="25">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <!--Count Down Type-->
+            <Grid Padding="5">
+                <Label Text="Count Type:"
+                   HorizontalOptions="End"/>
+            </Grid>
+
+            <Grid Padding="5" Grid.Column="1">
+                <StackLayout>
+                    <Switch IsToggled="{Binding IsDown}"/>
+                </StackLayout>
+            </Grid>
+
+            <Grid  Padding="5" Grid.Row="1" >
+                <Label
+               HorizontalOptions="End"
+               Text="Time:"/>
+            </Grid>
+
+            <Grid  Padding="5" Grid.Row="1" Grid.Column="1">
+                <Stepper HorizontalOptions="Start"
+                           Minimum="1"
+                           IsEnabled="{Binding IsDown}"
+                           Value="{Binding Minutes}"/>
+            </Grid>
+
+            <Grid  Padding="5" Grid.Row="2">
+                <Label HorizontalOptions="End"
+                   Text="Output:"/>
+            </Grid>
+
+            <Grid  Padding="5" Grid.Row="2" Grid.Column="1">
+                <Entry Text="{Binding Output}"/>
+            </Grid>
+
+            <Grid  Padding="5" Grid.Row="3">
+                <Label HorizontalOptions="End"
+                   Text="Finish:"/>
+            </Grid>
+
+            <Grid  Padding="5" Grid.Row="3" Grid.Column="1">
+                <Entry Text="{Binding Finish}"/>
+            </Grid>
+
+            <Grid  Padding="5" Grid.Row="4">
+                <Label HorizontalOptions="End"
+                   Text="File Name:"/>
+            </Grid>
+
+            <Grid  Padding="5" Grid.Row="4" Grid.Column="1">
+                <Entry  Text="{Binding FileName}"/>
+            </Grid>
+
+            <Grid  Padding="5" Grid.Row="4" Grid.Column="2">
+                <Button 
+                Command="{Binding CopyFilePathCommand}"
+                Text="Copy"/>
+            </Grid>
+
+            <Grid  Padding="5" Grid.Row="5" Grid.ColumnSpan="2">
+                <Button
+                          Text="{Binding StartStop}"
+                          Command="{Binding StartStopTimerCommand}"/>
+            </Grid>
+
+            <Grid  Padding="5" Grid.Row="6" Grid.ColumnSpan="2">
+                <Label
+                       Text="{Binding CountdownOutput}" 
+                       HorizontalOptions="Center" />
+            </Grid>
+        </Grid>
+    </ScrollView>
+
+</ContentPage>
